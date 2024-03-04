@@ -22,7 +22,7 @@ jobs:
           pip install -r requirements.txt
       - name: Run script
         run: | 
-          python scripts/Paper2Zotero.py  --styles 0 1 2 --colors 0 1 2 3 4 5
+          python ./scripts/Paper2Zotero.py 
       - name: Commit and push changes
         run: |
           git config --local user.email "action@github.com"
