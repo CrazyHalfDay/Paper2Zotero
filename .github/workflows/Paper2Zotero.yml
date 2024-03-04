@@ -32,16 +32,18 @@ jobs:
           # 添加所有变更到 git
           git add .
           
-          # 检查是否有变更 (git diff --cached 检查已经暂存的变更)
-          # --exit-code 选项会在没有任何变更时候退出并返回 1
-          git diff --cached --exit-code
+          # 保存是否有变更 (git diff --cached 检查已经暂存的变更)
+          # 如果有变更, git diff 返回非零退出码
+          # 使用 || true 来确保即使有变更，脚本也不会退出
+          GIT_DIFF=$(git diff --cached --exit-code || true)
           
-          # 如果 git diff 提供了退出代码 1 (意味着有变更), 那么执行提交
-          # 如果没有变更 (退出代码 0), 那么不执行提交
-          if [ $? -eq 1 ]; then
+          # 如果有变更, 那么执行提交和推送
+          if [ -z "$GIT_DIFF" ]; then
+            echo "No changes detected"
+          else
             git commit -m 'Update from GitHub Action'
             git push
-          else
-            echo "No changes detected"
           fi
+        shell: /usr/bin/bash -e {0}
+
 
