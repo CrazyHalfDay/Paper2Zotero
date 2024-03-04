@@ -46,7 +46,7 @@ def is_item_exist(templates):
                 item_key = zot.create_items([template])['successful']["0"]["key"]
                 zot.addto_collection("RCVLGRJ9", zot.item(item_key))  # 将文献信息添加到抓取最新文献的集合中
                 DOIs.add(template['DOI'])
-                with open("DOIs.pickle", "wb") as file:
+                with open("scripts/DOIs.pickle", "wb") as file:
                     pickle.dump(DOIs, file)
                 print(f"条目{template['title']}:{template['DOI']}不存在于zotero中")
             except Exception as e:
@@ -58,7 +58,7 @@ Useragent = {
     "user-agent":"Mozlila/5.0"
 }
 #文献信息库
-with open("DOIs.pickle", "rb") as file:
+with open("scripts/DOIs.pickle", "rb") as file:
     DOIs = pickle.load(file)
 
 Urls = ["https://www.sciencedirect.com/journal/lithos/vol/472/suppl/C","https://www.sciencedirect.com/journal/geochimica-et-cosmochimica-acta/vol/370/suppl/C","https://www.sciencedirect.com/journal/chemical-geology/vol/651/suppl/C","https://www.sciencedirect.com/journal/earth-and-planetary-science-letters/vol/631/suppl/C"]  #
