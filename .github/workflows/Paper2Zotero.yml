@@ -25,8 +25,23 @@ jobs:
           python scripts/Paper2Zotero.py 
       - name: Commit and push changes
         run: |
+          # 配置 git 用户信息
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          
+          # 添加所有变更到 git
           git add .
-          git diff --cached --exit-code || git commit -m 'Add new cover'
-          git push origin HEAD:main || echo "Nothing to push"
+          
+          # 检查是否有变更 (git diff --cached 检查已经暂存的变更)
+          # --exit-code 选项会在没有任何变更时候退出并返回 1
+          git diff --cached --exit-code
+          
+          # 如果 git diff 提供了退出代码 1 (意味着有变更), 那么执行提交
+          # 如果没有变更 (退出代码 0), 那么不执行提交
+          if [ $? -eq 1 ]; then
+            git commit -m 'Update from GitHub Action'
+            git push
+          else
+            echo "No changes detected"
+          fi
+
