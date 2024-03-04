@@ -10,22 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.9
-
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
       - name: Run script
         run: | 
-          python scripts/Paper2Zotero.py
-
+          python scripts/Paper2Zotero.py  --styles 0 1 2 --colors 0 1 2 3 4 5
       - name: Commit and push changes
         run: |
           git config --local user.email "action@github.com"
