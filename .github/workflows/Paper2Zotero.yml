@@ -3,9 +3,7 @@ on:
   push:
     branches: [ main ]
   schedule:
-    - cron: '0 0 * * *'
-    # 这个CRON表达式表示在UTC时间每天午夜执行
-
+    - cron: '0 23 * * *'
 jobs:
   execute-python-script:
     runs-on: ubuntu-latest
@@ -22,9 +20,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-        # 如果你的脚本需要安装依赖，可以在这里添加pip install命令
-        # 例如: pip install -r requirements.txt
 
     - name: Run script
-      run: python scripts/script.py
-      # 确保这里的script.py路径是相对于仓库根目录的相对路径
+      run: python scripts/期刊和zotero联动Beta 0.01.py
