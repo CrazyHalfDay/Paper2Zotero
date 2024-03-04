@@ -2,6 +2,9 @@ name: Paper sync
 on: 
   push:
     branches: [ main ]
+  schedule:
+    - cron: '0 0 * * *'
+    # 这个CRON表达式表示在UTC时间每天午夜执行
 
 jobs:
   execute-python-script:
