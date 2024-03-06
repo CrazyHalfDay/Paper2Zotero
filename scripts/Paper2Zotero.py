@@ -61,7 +61,8 @@ Useragent = {
 with open("scripts/DOIs.pickle", "rb") as file:
     DOIs = pickle.load(file)
 
-Urls = ["https://www.sciencedirect.com/journal/lithos/vol/472/suppl/C","https://www.sciencedirect.com/journal/geochimica-et-cosmochimica-acta/vol/370/suppl/C","https://www.sciencedirect.com/journal/chemical-geology/vol/651/suppl/C","https://www.sciencedirect.com/journal/earth-and-planetary-science-letters/vol/631/suppl/C","https://www.sciencedirect.com/journal/earth-science-reviews/vol/251/suppl/C"]  #
+Urls = ["https://www.sciencedirect.com/journal/lithos/vol/10000/suppl/C","https://www.sciencedirect.com/journal/geochimica-et-cosmochimica-acta/vol/10000/suppl/C","https://www.sciencedirect.com/journal/chemical-geology/vol/10000/suppl/C","https://www.sciencedirect.com/journal/earth-and-planetary-science-letters/vol/10000/suppl/C","https://www.sciencedirect.com/journal/earth-science-reviews/vol/10000/suppl/C"]  #
+#爱斯维尔期刊链接当期刊版数超过最新的，自动定位为最新期刊，因此将改为vol/10000即可
 response = requests.get("https://www.sciencedirect.com/journal/lithos/vol/472/suppl/C", headers = Useragent)
 zot = zotero.Zotero("5342248", "group", "SAjnkNkrQiPHCToY5Tdfi4jI")
 
