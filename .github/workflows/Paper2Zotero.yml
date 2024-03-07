@@ -26,8 +26,8 @@ jobs:
       - name: Commit and push changes
         run: |
           # 配置 git 用户信息
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --local user.email "zhaoxi2000.outlook.com"
+          git config --local user.name "CrazyHalfDay"
           
           # 添加所有变更到 git
           git add .
