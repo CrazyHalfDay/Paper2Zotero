@@ -75,7 +75,7 @@ def is_item_exist(templates):
                     item_key = zot.create_items([template])['successful']["0"]["key"]
                     zot.addto_collection("RCVLGRJ9", zot.item(item_key))  # 将文献信息添加到抓取最新文献的集合中
                     DOIs.add(template['DOI'])
-                    with open("DOIs.pickle", "wb") as file:
+                    with open("scripts/DOIs.pickle", "wb") as file:
                         pickle.dump(DOIs, file)
                     i = i + 1
                     print(f"条目{template['title']}(DOI:{template['DOI']})成功添加到zotero中")
