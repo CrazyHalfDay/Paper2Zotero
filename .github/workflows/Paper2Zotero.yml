@@ -35,14 +35,13 @@ jobs:
           # 保存是否有变更 (git diff --cached 检查已经暂存的变更)
           # 如果有变更, git diff 返回非零退出码
           # 使用 || true 来确保即使有变更，脚本也不会退出
-          GIT_DIFF=$(git diff --cached --exit-code || true)
-          
-          # 如果有变更, 那么执行提交和推送
-          if [ -z "$GIT_DIFF" ]; then
-            echo "No changes detected"
-          else
+          if ! git diff --cached --quiet; then
+            git pull --rebase
             git commit -m 'Update from GitHub Action'
             git push
+          else
+            echo "No changes detected"
+            
           fi
         shell: /usr/bin/bash -e {0}
 
