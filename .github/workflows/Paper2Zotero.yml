@@ -28,7 +28,7 @@ jobs:
           # 配置 git 用户信息
           git config --local user.email "zhaoxi2000.outlook.com"
           git config --local user.name "CrazyHalfDay"
-          
+          git pull
           # 添加所有变更到 git
           git add .
           
