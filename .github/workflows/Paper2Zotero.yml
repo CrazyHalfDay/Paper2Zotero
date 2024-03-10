@@ -23,26 +23,11 @@ jobs:
       - name: Run script
         run: | 
           python scripts/Paper2Zotero.py 
-      - name: Commit and push changes
+      - name: push
         run: |
-          # 配置 git 用户信息
-          git config --local user.email "zhaoxi2000.outlook.com"
-          git config --local user.name "CrazyHalfDay"
-          git pull
-          # 添加所有变更到 git
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git add .
-          
-          # 保存是否有变更 (git diff --cached 检查已经暂存的变更)
-          # 如果有变更, git diff 返回非零退出码
-          # 使用 || true 来确保即使有变更，脚本也不会退出
-          if ! git diff --cached --quiet; then
-            git pull --rebase
-            git commit -m 'Update from GitHub Action'
-            git push
-          else
-            echo "No changes detected"
-            
-          fi
-        shell: /usr/bin/bash -e {0}
-
+          git commit -m 'add new cover' || echo "nothing to commit"
+          git push || echo "nothing to push"
 
