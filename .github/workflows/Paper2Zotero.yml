@@ -24,8 +24,8 @@ jobs:
         run: | 
           python scripts/Paper2Zotero.py 
         env:
-          ZOTERO_API: ${{secret.ZOTERO_API}} 
-          ZOTERO_LIB_ID: ${{ZOTERO_LIB_ID}}
+          ZOTERO_API: ${{secrets.ZOTERO_API}} 
+          ZOTERO_LIB_ID: ${{secrets.ZOTERO_LIB_ID}}
       - name: push
         run: |
           git config --local user.email "action@github.com"
