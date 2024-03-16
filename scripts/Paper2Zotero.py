@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from pyzotero import zotero
 import pickle
 import time
+import os
 
 #获取期刊信息的文本内容
 def get_Publication_info(url):
@@ -96,7 +97,9 @@ with open("scripts/DOIs.pickle", "rb") as file:
 
 Urls = ["https://www.sciencedirect.com/journal/geoscience-frontiers/vol/1000/issue/20","https://www.sciencedirect.com/journal/lithos/vol/10000/suppl/C","https://www.sciencedirect.com/journal/geochimica-et-cosmochimica-acta/vol/10000/suppl/C","https://www.sciencedirect.com/journal/chemical-geology/vol/10000/suppl/C","https://www.sciencedirect.com/journal/earth-and-planetary-science-letters/vol/10000/suppl/C","https://www.sciencedirect.com/journal/earth-science-reviews/vol/10000/suppl/C"]  #
 #爱斯维尔期刊链接当期刊版数超过最新的，自动定位为最新期刊，因此将改为vol/10000即可
-zot = zotero.Zotero("5342248", "group", "SAjnkNkrQiPHCToY5Tdfi4jI")
+zotero_api = os.environ.get("ZOTERO_API")
+zotero_lib_id = os.eviron.get("ZOTERO_LIB_ID")
+zot = zotero.Zotero(zotero_lib_id, "group", zotero_api)
 
 for url in Urls:
     articles = get_Publication_info(url)
