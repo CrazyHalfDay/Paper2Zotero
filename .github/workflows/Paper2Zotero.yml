@@ -23,7 +23,7 @@ jobs:
       - name: Run script
         run: | 
           python scripts/Paper2Zotero.py 
-        environ:
+        env:
           ZOTERO_API: ${{secret.ZOTERO_API}} 
           ZOTERO_LIB_ID: ${{ZOTERO_LIB_ID}}
       - name: push
