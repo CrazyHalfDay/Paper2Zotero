@@ -1,0 +1,33 @@
+name: getpapers
+
+on:
+  workflow_dispatch:
+
+jobs:
+  execute-python-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run script
+        run: | 
+          python scripts/getpapers.py 
+        env:
+          ZOTERO_API: ${{secrets.ZOTERO_API}} 
+          ZOTERO_LIB_ID: ${{secrets.ZOTERO_LIB_ID}}
+      - name: push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git commit -m 'add new papers' || echo "nothing to commit"
+          git push || echo "nothing to push"                   
